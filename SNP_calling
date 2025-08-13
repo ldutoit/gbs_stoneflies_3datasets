@@ -10,7 +10,11 @@ Then, within ach of threee different folders, I ran the three datasets.
 
 
 
-## OG9739-458159104
+## OG9739-458159104 
+
+```
+#/nesi/nobackup/uoo03737/ludo/stoneflies/RAD_snakemake
+```
 
 config file:
 ```
@@ -27,3 +31,48 @@ genome: # only needed for refmap mode
 vcf_filtering:
   parameters: "--max-missing 0.8 --maf 0.0001" # vcftools arguments, passed at once
 ```
+
+## OG9759-460919822
+
+```
+##/nesi/nobackup/uoo03737/ludo//OG9757_stoneflies
+```
+config.yaml
+```
+
+mode: "refmap" # "denovo" or "refmap"
+raw_fastq: # single-end currently not supported
+  forward: "../OG9759-460919822/AAH7VNHM5-9759-P1-00-01_S1_L001_R2_001.fastq.gz"
+  reverse: "../OG9759-460919822/AAH7VNHM5-9759-P1-00-01_S1_L001_R2_001.fastq.gz"
+cutadapt:
+  adapter: "AGATCGGAAGAGC" # Sequence of the adapter
+  length: "50" # Mininimum length for refmap, common length for denovo
+  minimum_phred: "25"  # Changed '=' to ':'
+genome: # only needed for refmap mode
+  ref: "stoneflygenomeassemblyv1.fasta"
+vcf_filtering:
+  parameters: "--max-missing 0.8 --maf 0.0001" # vcftools arguments, passed at once
+[ludovic.dutoit@login03 OG9757_stoneflies]$ 
+```
+
+## angus_stoneflies
+
+```
+#/nesi/nobackup/uoo03737/ludo/angus_stoneflies
+```
+
+```
+mode: "refmap" # "denovo" or "refmap"
+raw_fastq: # single-end currently not supported
+  forward: "../angus_source_files/AAFL27TM5-8834-P1-00-01_S1_L001_R1_001.fastq.gz"
+  reverse: "../angus_source_files/AAFL27TM5-8834-P1-00-01_S1_L001_R2_001.fastq.gz"
+cutadapt:
+  adapter: "AGATCGGAAGAGC" # Sequence of the adapter
+  length: "50" # Mininimum length for refmap, common length for denovo
+  minimum_phred: "25"  # Changed '=' to ':'
+genome: # only needed for refmap mode
+  ref: "stoneflygenomeassemblyv1.fasta"
+vcf_filtering:
+  parameters: "--max-missing 0.8 --maf 0.0001" # vcftools arguments, passed at once
+
+
