@@ -74,5 +74,18 @@ genome: # only needed for refmap mode
   ref: "stoneflygenomeassemblyv1.fasta"
 vcf_filtering:
   parameters: "--max-missing 0.8 --maf 0.0001" # vcftools arguments, passed at once
+```
+
+6 samples with "no" data past mapping (failing ref_map):
+
+```
+Bay_09_25
+Opo_11
+Opo_9
+Rob_E14
+Tho_S17
+Tho_S22
+```
+
 
 
