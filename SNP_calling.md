@@ -42,6 +42,18 @@ snakemake --dag filtered.recode.vcf | dot -Tsvg > dag.svg # create the graph of 
 snakemake --cores all filtered.recode.vcf
 ```
 
+Two individuals ended up with over 95% missing data:
+
+```
+vcftools --max-missing 0.8 --vcf  output_SNPcalling/populations.snps.vcf --remove-indv Sy169 --remove-indv Sy96 --recode --out filtered_31
+```
+19690 SNPs for 31 individuals, might be a reflection of a relativelty tight geographic dataset?
+
+```
+mv filtered_31.recode.vcf  OG9739_stoneflies_19690SNPs_31inds_maxmissing08.snps.vcf
+gzip OG9739_stoneflies_19690SNPs_31inds_maxmissing08.snps.vcf
+```
+
 
 ## OG9759-460919822
 
