@@ -32,6 +32,17 @@ vcf_filtering:
   parameters: "--max-missing 0.8 --maf 0.0001" # vcftools arguments, passed at once
 ```
 
+I realised I need to trim the 3p' adapter:
+
+```
+mv samples samples_before_trimming
+python Clean3pAdapteronShortDemuxReads.py samples_before_trimming samples
+module load cutadapt FastQC BWA SAMtools Stacks snakemake
+snakemake --dag filtered.recode.vcf | dot -Tsvg > dag.svg # create the graph of rules 
+snakemake --cores all filtered.recode.vcf
+```
+
+
 ## OG9759-460919822
 
 ```
