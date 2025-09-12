@@ -46,6 +46,7 @@ Two individuals ended up with over 95% missing data:
 
 ```
 vcftools --max-missing 0.8 --vcf  output_SNPcalling/populations.snps.vcf --remove-indv Sy169 --remove-indv Sy96 --recode --out filtered_31
+
 ```
 19690 SNPs for 31 individuals, might be a reflection of a relativelty tight geographic dataset?
 
@@ -78,55 +79,31 @@ vcf_filtering:
 [ludovic.dutoit@login03 OG9757_stoneflies]$ 
 ```
 
-## angus_stoneflies
 
 ```
-#/nesi/nobackup/uoo03737/ludo/angus_stoneflies
-```
-
-```
-mode: "refmap" # "denovo" or "refmap"
-raw_fastq: # single-end currently not supported
-  forward: "../angus_source_files/AAFL27TM5-8834-P1-00-01_S1_L001_R1_001.fastq.gz"
-  reverse: "../angus_source_files/AAFL27TM5-8834-P1-00-01_S1_L001_R2_001.fastq.gz"
-cutadapt:
-  adapter: "AGATCGGAAGAGC" # Sequence of the adapter
-  length: "50" # Mininimum length for refmap, common length for denovo
-  minimum_phred: "25"  # Changed '=' to ':'
-genome: # only needed for refmap mode
-  ref: "stoneflygenomeassemblyv1.fasta"
-vcf_filtering:
-  parameters: "--max-missing 0.8 --maf 0.0001" # vcftools arguments, passed at once
-```
-
-
-I realised I need to trim the 3p' adapter:
-
-```
-mv samples samples_before_trimming
-python Clean3pAdapteronShortDemuxReads.py samples_before_trimming samples
 module load cutadapt FastQC BWA SAMtools Stacks snakemake
 snakemake --dag filtered.recode.vcf | dot -Tsvg > dag.svg # create the graph of rules 
 snakemake --cores all filtered.recode.vcf
 ```
+65k SNPs for 95 insidividual.
 
-I did the vcf filtering manually at the end:
-
-```
-vcftools --vcf output_SNPcalling/populations.snps.vcf --max-missing 0.8 --maf 0.0001 --recode --out filtered
-vcftools --vcf filtered.recode.vcf --missing-indv
-```
-
-6 samples with "no" data past mapping (failing ref_map):
+3 individuals with more than 80% missing data:
 
 ```
-Bay_09_25
-Opo_11
-Opo_9
-Rob_E14
-Tho_S17
-Tho_S22
+Awa_780m_LW_30.11_female_C2     65262   0       57247   0.877187
+PLC_249.6       65262   0       57824   0.886029
+PLC_92.3        65262   0       64495   0.988247
+```
+```
+vcftools --vcf output_SNPcalling/populations.snps.vcf --max-missing 0.8  --recode --out filtered --remove-indv Awa_780m_LW_30.11_female_C2  --remove-indv PLC_249.6  --remove-indv PLC_92.3
 ```
 
+```
+mv filtered.recode.vcf  OG9759_stoneflies_73118SNPs_92inds_maxmissing08.snps.vcf
+gzip OG9759_stoneflies_73118SNPs_92inds_maxmissing08.snps.vcf
+```
+73118 SNPs for 02k indivudals
 
+## angus_stoneflies
 
+DONE SEPARAELY BY ANGUS
