@@ -1,4 +1,4 @@
-# SNP Calling.md
+# SNP Calling.md 
 
 I used the RAD_snakemake pipeline:
 
