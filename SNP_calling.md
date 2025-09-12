@@ -57,7 +57,7 @@ gzip OG9739_stoneflies_19690SNPs_31inds_maxmissing08.snps.vcf
 
 
 ## OG9759-460919822
-
+** This one does not do the 3p adapters **
 ```
 ##/nesi/nobackup/uoo03737/ludo//OG9757_stoneflies
 ```
